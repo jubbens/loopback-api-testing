@@ -8,7 +8,7 @@ This package is not supported by, endorsed by, or associated with Strongloop or 
 
 # Installing #
 
-```
+```bash
 npm install loopback-api-testing
 ```
 
@@ -17,31 +17,31 @@ npm install loopback-api-testing
 The test file (e.g. `test/loopbackAPI.test.js`)
 
 
-```
+```js
 var loopbackApiTesting = require('loopback-api-testing');
 
 loopbackApiTesting.run('./apiTestConfig.json', function(err) {
-	if (err) {
-  		console.log(err);
-  	}
+  if (err) {
+    console.log(err);
+  }
 });
 ```
 
 The test configuration JSON file (e.g. `test/apiTestConfig.json`):
 
-```
+```js
 [
-	{
-		"method": "GET",
-		"model": "Users",
-		"expect": 401
-	}
+  {
+    "method": "GET",
+    "model": "Users",
+    "expect": 401
+  }
 ]
 ```
 
 Running the tests (for example):
 
-```
+```bash
 mocha --reporter spec test
 ```
 
@@ -59,14 +59,14 @@ Should get you:
 
 You can specify a `username` and `password` in your tests to make the request as an authenticated user.
 
-```
+```js
 [
-	{
-		"method": "GET",
-		"model": "Cars",
-		"username": "my@user.com",
-		"password": "myPassword",
-		"expect": 200
-	}
+  {
+    "method": "GET",
+    "model": "Cars",
+    "username": "my@user.com",
+    "password": "myPassword",
+    "expect": 200
+  }
 ]
 ```

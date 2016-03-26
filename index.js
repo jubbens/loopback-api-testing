@@ -24,7 +24,7 @@ module.exports = {
 
 
 		describe('Loopback API', function() {
-	  	for (var i = 0; i < conf.length; i++) {
+			for (var i = 0; i < conf.length; i++) {
 				var c = conf[i];
 
 				if (!c.hasOwnProperty('method')) {
@@ -55,16 +55,16 @@ module.exports = {
 
 				it(description, function(done) {
 					parsedMethod
-			    .expect(c.expect)
-			    .end(function(err, res) {
-			      if (err) {
-			        return done(err);
-			      } else {
-			        return done();
-			      }
-			    });
+					.expect(c.expect)
+					.end(function(err, res) {
+						if (err) {
+							return done(err);
+						} else {
+							return done();
+						}
+					});
 				});
 			}
 		});
-	}
+}
 }

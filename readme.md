@@ -1,6 +1,6 @@
 # Loopback API Testing #
 
-This package is a simplififed replacement for [loopback-testing](https://github.com/strongloop/loopback-testing), which is now deprecated. It generates [Mocha](https://mochajs.org/) tests for API routes and examines their responses.
+This package is a simplified replacement for [loopback-testing](https://github.com/strongloop/loopback-testing), which is now deprecated. It generates [Mocha](https://mochajs.org/) tests for API routes and examines their responses.
 
 # Example Usage #
 

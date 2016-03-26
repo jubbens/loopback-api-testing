@@ -13,6 +13,10 @@
   "keywords": [
     "loopbackjs"
   ],
+  "devDependencies": {
+    "supertest": "^1.0.1",
+    "mocha": "^2.2.5"
+  },
   "author": "Jordan Ubbens",
   "license": "MIT",
   "bugs": {

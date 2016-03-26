@@ -66,19 +66,19 @@ module.exports = {
 					loginBlock = function(loginCallback) {
 						agent
 						.post(baseURL+'users/login')
-				    .send({ email: c.username, password: c.password, ttl: '1209600000' })
-				    .set('Accept', 'application/json')
-				    .set('Content-Type', 'application/json')
-				    .expect(200)
-				    .end(function(err, authRes) {
-				      if (err) {
-				        return loginCallback('Could not log in with provided credentials', null);
-				      }
+						.send({ email: c.username, password: c.password, ttl: '1209600000' })
+						.set('Accept', 'application/json')
+						.set('Content-Type', 'application/json')
+						.expect(200)
+						.end(function(err, authRes) {
+							if (err) {
+								return loginCallback('Could not log in with provided credentials', null);
+							}
 
-				      var token = authRes.body.id;
+							var token = authRes.body.id;
 
-				      return loginCallback(null, token);
-				    });
+							return loginCallback(null, token);
+						});
 					}
 				}
 
@@ -105,5 +105,5 @@ module.exports = {
 				});
 			}
 		});
-	}
+}
 }

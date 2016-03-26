@@ -17,7 +17,7 @@ loopbackApiTesting.run('./apiTestConfig.json', function(err) {
 });
 ```
 
-The test configuration JSON file (`apiTestConfig.json`):
+The test configuration JSON file (e.g. `test/apiTestConfig.json`):
 
 ```
 [

@@ -6,13 +6,13 @@ The main difference between this package and [loopback-testing](https://github.c
 
 This package is not supported by, endorsed by, or associated with Strongloop or the core Loopback team.
 
-# Installing #
+## Installing ##
 
 ```bash
 npm install loopback-api-testing
 ```
 
-# Example Usage #
+## Example Usage ##
 
 The test file (e.g. `test/loopbackAPI.test.js`)
 
@@ -55,7 +55,7 @@ Should get you:
   1 passing (318ms)
 ```
 
-# Making Authenticated Requests #
+## Making Authenticated Requests ##
 
 You can specify a `username` and `password` in your tests to make the request as an authenticated user.
 

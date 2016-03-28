@@ -1,6 +1,6 @@
 {
   "name": "loopback-api-testing",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "Simplified automated API testing for Loopback",
   "main": "index.js",
   "scripts": {

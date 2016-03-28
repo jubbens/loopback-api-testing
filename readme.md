@@ -70,3 +70,20 @@ You can specify a `username` and `password` in your tests to make the request as
   }
 ]
 ```
+
+## Making Requests with Data ##
+
+You can send json data with a request.
+
+```js
+[
+  {
+    "method": "POST",
+    "model": "Cars",
+    "withData": {
+      "color": "blue"
+    },
+    "expect": 200
+  }
+]
+```

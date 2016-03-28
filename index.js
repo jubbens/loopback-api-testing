@@ -38,6 +38,7 @@ module.exports = {
           return callback('Test has no expected response code specified');
         }
 
+        var hasData = (c.hasOwnProperty('withData'));
         var isWithAuthentication = (c.hasOwnProperty('username') && c.hasOwnProperty('password'));
         var authenticationDescription = (isWithAuthentication) ? 'authenticated' : 'unauthenticated';
 
@@ -90,6 +91,11 @@ module.exports = {
 
             if (loginToken) {
               parsedMethod = parsedMethod.set('Authorization', loginToken);
+            }
+
+            if (hasData) {
+              parsedMethod = parsedMethod.send(c.withData)
+              .set('Content-Type', 'application/json');
             }
 
             parsedMethod

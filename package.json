@@ -13,7 +13,7 @@
   "keywords": [
     "loopbackjs"
   ],
-  "devDependencies": {
+  "dependencies": {
     "supertest": "^1.0.1",
     "mocha": "^2.2.5"
   },

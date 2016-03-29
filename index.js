@@ -3,6 +3,7 @@
 var supertest = require('supertest');
 var agent = supertest.agent('http://localhost:3000');
 var app = require('../../server/server.js');
+var async = require('async');
 
 module.exports = {
   run: function(confFile, callback) {
@@ -23,19 +24,20 @@ module.exports = {
     });
 
     describe('Loopback API', function() {
-      for (var i = 0; i < conf.length; i++) {
-        var c = conf[i];
-
+      async.each(conf, function(c, asyncCallback) {
         if (!c.hasOwnProperty('method')) {
-          return callback('Test has no method specified');
+          callback('Test has no method specified');
+          return asyncCallback();
         }
 
         if (!c.hasOwnProperty('model')) {
-          return callback('Test has no route specified');
+          callback('Test has no route specified');
+          return asyncCallback();
         }
 
         if (!c.hasOwnProperty('expect')) {
-          return callback('Test has no expected response code specified');
+          callback('Test has no expected response code specified');
+          return asyncCallback();
         }
 
         var hasData = (c.hasOwnProperty('withData'));
@@ -60,7 +62,8 @@ module.exports = {
         }
 
         if (typeof parsedMethod === 'undefined') {
-          return callback('Test has an unrecognized method type');
+          callback('Test has an unrecognized method type');
+          return asyncCallback();
         }
 
         if (isWithAuthentication) {
@@ -86,7 +89,8 @@ module.exports = {
         it(description, function(done) {
           loginBlock(function(loginError, loginToken) {
             if (loginError) {
-              return done(loginError);
+              done(loginError);
+              return asyncCallback();
             }
 
             if (loginToken) {
@@ -102,14 +106,16 @@ module.exports = {
             .expect(c.expect)
             .end(function(err, res) {
               if (err) {
-                return done(err);
+                done(err);
+                return asyncCallback();
               } else {
-                return done();
+                done();
+                return asyncCallback();
               }
             });
           });
         });
-      }
+      });
     });
   }
 }

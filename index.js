@@ -2,7 +2,7 @@
 
 var supertest = require('supertest');
 var agent = supertest.agent('http://localhost:3000');
-var app = require('../server/server');
+var app = require('../../server/server.js');
 
 module.exports = {
   run: function(confFile, callback) {

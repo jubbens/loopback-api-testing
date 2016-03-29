@@ -20,7 +20,7 @@ The test file (e.g. `test/loopbackAPI.test.js`)
 ```js
 var loopbackApiTesting = require('loopback-api-testing');
 
-loopbackApiTesting.run('./apiTestConfig.json', function(err) {
+loopbackApiTesting.run('../../test/apiTestConfig.json', function(err) {
   if (err) {
     console.log(err);
   }

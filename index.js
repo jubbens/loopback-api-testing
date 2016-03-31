@@ -1,14 +1,12 @@
 'use strict';
 
 var supertest = require('supertest');
-var agent = supertest.agent('http://localhost:3000');
-var app = require('../../server/server.js');
 var async = require('async');
 
 module.exports = {
-  run: function(confFile, callback) {
+  run: function(conf, app, url, callback) {
     var server;
-    var conf = require(confFile);
+    var agent = supertest.agent(url);
     var baseURL = '/api/';
 
     if (typeof conf !== 'object') {

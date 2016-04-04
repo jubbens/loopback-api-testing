@@ -1,4 +1,6 @@
 # Loopback API Testing #
+[![npm](https://img.shields.io/npm/dm/loopback-api-testing.svg)]()
+[![npm](https://img.shields.io/npm/l/loopback-api-testing.svg)]()
 
 This package is a simplified replacement for [loopback-testing](https://github.com/strongloop/loopback-testing), which is now considered deprecated. It generates [Mocha](https://mochajs.org/) tests for Loopback API routes and examines their responses.
 

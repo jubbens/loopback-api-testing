@@ -7,7 +7,7 @@ module.exports = {
   run: function(conf, app, url, callback) {
     var server;
     var agent = supertest.agent(url);
-    var baseURL = '/api/';
+    var baseURL = '/';
 
     if (typeof conf !== 'object') {
       return callback('Failed to load test configuration from file');

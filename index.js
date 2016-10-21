@@ -57,6 +57,8 @@ module.exports = {
           parsedMethod = agent.put(baseURL+c.model);
         } else if (c.method.toUpperCase() === 'DELETE') {
           parsedMethod = agent.delete(baseURL+c.model);
+        } else if (c.method.toUpperCase() === 'PATCH') {
+          parsedMethod = agent.patch(baseURL+c.model);
         }
 
         if (typeof parsedMethod === 'undefined') {

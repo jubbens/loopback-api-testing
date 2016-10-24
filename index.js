@@ -13,13 +13,15 @@ module.exports = {
       return callback('Failed to load test configuration from file');
     }
 
-    before(function(done) {
-      server = app.listen(done);
-    });
+    if (app) {
+      before(function(done) {
+        server = app.listen(done);
+      });
 
-    after(function(done) {
-      server.close(done);
-    });
+      after(function(done) {
+        server.close(done);
+      });
+    }
 
     describe('Loopback API', function() {
       async.each(conf, function(c, asyncCallback) {

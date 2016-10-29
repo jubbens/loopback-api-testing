@@ -46,10 +46,7 @@ module.exports = {
 
         var description = 'should respond '+c.expect+' on '+authenticationDescription+' '+c.method+' requests to /'+c.model;
         var parsedMethod;
-
-        var loginBlock = function(loginCallback) { 
-          return loginCallback(null, null); 
-        };
+        var loginBlock;
 
         if (c.method.toUpperCase() === 'GET') {
           parsedMethod = agent.get(baseURL+c.model);
@@ -61,9 +58,7 @@ module.exports = {
           parsedMethod = agent.delete(baseURL+c.model);
         } else if (c.method.toUpperCase() === 'PATCH') {
           parsedMethod = agent.patch(baseURL+c.model);
-        }
-
-        if (typeof parsedMethod === 'undefined') {
+        } else {
           callback('Test has an unrecognized method type');
           return asyncCallback();
         }
@@ -86,6 +81,10 @@ module.exports = {
               return loginCallback(null, token);
             });
           }
+        } else {
+          loginBlock = function(loginCallback) { 
+            return loginCallback(null, null); 
+          };
         }
 
         it(description, function(done) {

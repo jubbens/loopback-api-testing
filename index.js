@@ -45,8 +45,8 @@ module.exports = {
         var description = 'should respond '+c.expect+' on '+authenticationDescription+' '+c.method+' requests to /'+c.model;
         var parsedMethod;
 
-        var loginBlock = function(loginCallback) { 
-          return loginCallback(null, null); 
+        var loginBlock = function(loginCallback) {
+          return loginCallback(null, null);
         };
 
         if (c.method.toUpperCase() === 'GET') {
@@ -104,6 +104,14 @@ module.exports = {
             .expect(c.expect)
             .end(function(err, res) {
               if (err) {
+                if ( res.body.error ) {
+                  var error = res.body.error;
+                  err.message = err.message +": "+error.message;
+                  var stack = err.stack.split("\n").slice(1);
+                  stack.push("    ...");
+                  stack = stack.concat(error.stack.split("\n").slice(1));
+                  err.stack = stack.join("\n");
+                }
                 done(err);
                 return asyncCallback();
               } else {

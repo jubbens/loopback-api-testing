@@ -13,13 +13,15 @@ module.exports = {
       return callback('Failed to load test configuration from file');
     }
 
-    before(function(done) {
-      server = app.listen(done);
-    });
+    if (app) {
+      before(function(done) {
+        server = app.listen(done);
+      });
 
-    after(function(done) {
-      server.close(done);
-    });
+      after(function(done) {
+        server.close(done);
+      });
+    }
 
     describe('Loopback API', function() {
       async.each(conf, function(c, asyncCallback) {
@@ -44,10 +46,7 @@ module.exports = {
 
         var description = 'should respond '+c.expect+' on '+authenticationDescription+' '+c.method+' requests to /'+c.model;
         var parsedMethod;
-
-        var loginBlock = function(loginCallback) {
-          return loginCallback(null, null);
-        };
+        var loginBlock;
 
         if (c.method.toUpperCase() === 'GET') {
           parsedMethod = agent.get(baseURL+c.model);
@@ -57,9 +56,9 @@ module.exports = {
           parsedMethod = agent.put(baseURL+c.model);
         } else if (c.method.toUpperCase() === 'DELETE') {
           parsedMethod = agent.delete(baseURL+c.model);
-        }
-
-        if (typeof parsedMethod === 'undefined') {
+        } else if (c.method.toUpperCase() === 'PATCH') {
+          parsedMethod = agent.patch(baseURL+c.model);
+        } else {
           callback('Test has an unrecognized method type');
           return asyncCallback();
         }
@@ -82,6 +81,10 @@ module.exports = {
               return loginCallback(null, token);
             });
           }
+        } else {
+          loginBlock = function(loginCallback) { 
+            return loginCallback(null, null); 
+          };
         }
 
         it(description, function(done) {

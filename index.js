@@ -45,6 +45,11 @@ module.exports = {
         var authenticationDescription = (isWithAuthentication) ? 'authenticated' : 'unauthenticated';
 
         var description = 'should respond '+c.expect+' on '+authenticationDescription+' '+c.method+' requests to /'+c.model;
+        
+        if ( c.hasOwnProperty('desc') ) {
+          description = c.desc;
+        }
+        
         var parsedMethod;
         var loginBlock;
 

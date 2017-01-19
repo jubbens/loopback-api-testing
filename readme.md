@@ -92,3 +92,21 @@ You can send json data with a request.
   }
 ]
 ```
+
+## Add you own description
+
+You can add your own descriptions like so:
+
+```js
+[
+  {
+    "desc": "user can select the colour of the car",
+    "method": "PUT",
+    "model": "Cars",
+    "withData": {
+      "color": "blue"
+    },
+    "expect": 200
+  }
+]
+```

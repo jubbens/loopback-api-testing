@@ -103,6 +103,8 @@ module.exports = {
               .set('Content-Type', 'application/json');
             }
 
+            parsedMethod = parsedMethod.query(c.query);
+            
             parsedMethod
             .expect(c.expect)
             .end(function(err, res) {
